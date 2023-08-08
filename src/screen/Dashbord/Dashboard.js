@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Employees from "./Employees";
+import Employees from "../Employees";
 import {
   MDBContainer,
   MDBTable,
@@ -8,8 +8,8 @@ import {
   MDBBtn,
   MDBInput,
 } from "mdb-react-ui-kit";
-import "./Dashboard.css";
-import newlogo from "./iamge/newlogo.png";
+
+import newlogo from "../iamge/newlogo.png";
 
 function Dashboard() {
   const [users, setUsers] = useState(Employees);

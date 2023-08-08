@@ -1,14 +1,14 @@
-// Login.js
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Employees from './Employees'; // Update the path
+import Employees from '../Employees'; // Update the path
 import {
   MDBBtn,
   MDBRow,
   MDBCol,
 } from 'mdb-react-ui-kit';
 import './Login.css'
-import asier from './iamge/asier.png';
+import asier from '../iamge/asier.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -33,7 +33,7 @@ function Login() {
 
   return (
     <MDBRow style={{ fontFamily: 'Tajawal, sans-serif' }}>
-      <MDBCol md='8' className='my-5  mb-5 ' style={{ height: '100%' }}>
+      <MDBCol md='8' className='my-5  mb-5 ' style={{ height: '100%',fontFamily: 'Tajawal, sans-serif' }}>
         <div className='d-flex flex-column ms-5 '>
           <div className='text-center'>
             <img
@@ -66,14 +66,15 @@ function Login() {
           </div>
 
           <button className='custom-button mb-4' onClick={handleLogin}>
-            تسجبل الدخول
+            تسجيل الدخول
           </button>
 
-          <div  className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
-            <p className='mb-0'>ما عندك حساب ؟</p>
-            <MDBBtn outline className='mx-2' color='green' onClick={() => navigate('/register')}>
+          <div  style={{marginLeft:'320px'}}  className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
+          <MDBBtn outline className='mx-2' color='green' onClick={() => navigate('/register')}>
               انشاء
             </MDBBtn>
+            <p className='mb-0'>ما عندك حساب ؟</p>
+           
           </div>
         </div>
       </MDBCol>

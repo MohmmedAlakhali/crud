@@ -5,9 +5,10 @@ import {
   MDBRow,
   MDBCol,
 } from 'mdb-react-ui-kit';
-import Employees from './Employees'; 
-import './Register.css';
-import asier from './iamge/asier.png'
+import Employees from '../Employees'; 
+// import './style.css'
+
+import asier from '../iamge/asier.png'
 
 function Register() {
   const [userName, setUserName] = useState('');
@@ -73,6 +74,7 @@ function Register() {
         className="custom-input mb-2"
         type="tel"
         placeholder="رقم الجوال "
+        dir="rtl" 
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
     />
