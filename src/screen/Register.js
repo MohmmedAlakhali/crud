@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import {
   MDBBtn,
-  MDBContainer,
   MDBRow,
   MDBCol,
-  MDBInput
 } from 'mdb-react-ui-kit';
+import Employees from './Employees'; 
 import './Register.css';
+import asier from './iamge/asier.png'
 
 function Register() {
   const [userName, setUserName] = useState('');
@@ -16,102 +16,133 @@ function Register() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleRegister = () => {
-    if (userName && email && phone && password) {
-      // Assuming this is where you would perform API requests or database updates
-      // You can customize this logic to fit your application's needs
-      alert('Registration successful!');
-      navigate('/login');
-    } else {
-      alert('Please fill in all fields');
-    }
-  };
+
+    const handleRegister = () => {
+      // Create a new user object
+      const newUser = {
+        id: Date.now().toString(),
+        user_name: userName,
+        email: email,
+        phone: phone,
+        password: password,
+      };
+  
+      // Add the new user to the Employees array
+      Employees.push(newUser);
+  
+      // Navigate to login page after registration
+      navigate('/');
+    };
+  
   
 
   return (
-    <MDBContainer className="my-5 gradient-form">
-      <MDBRow>
-        <MDBCol col='6' className="mb-5">
+    
+  <div style={{height:'100%'}}>
+    <MDBRow style={{ fontFamily: 'Tajawal, sans-serif' }}>
+        <MDBCol md='8' className="my-5  mb-5 " style={{height:'100%' }}>
           <div className="d-flex flex-column ms-5">
             <div className="text-center">
               <img
                 src={"https://ars.gov.sa/assets/img/newlogo.png"}
-                style={{ width: '490px' }}
+                style={{ width: '490px',opacity:'0.2' }}
                 alt="logo"
               />
-              <h4 className="mt-1 mb-5 pb-1">مرحبا بك في امانه منطقه عسير</h4>
+       
             </div>
-            <p>الرجاء ادخال المعلومات لإنشاء حساب</p>
-            <MDBInput
-              wrapperClass='mb-4'
-              label='اسم المستخدم'
-              id='form1'
-              type='text'
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-            <MDBInput
-              wrapperClass='mb-4'
-              label='البريد الإلكتروني'
-              id='form2'
-              type='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <MDBInput
-              wrapperClass='mb-4'
-              label='رقم الجوال'
-              id='form3'
-              type='tel'
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-            <MDBInput
-              wrapperClass='mb-4'
-              label='كلمة المرور'
-              id='form4'
-              type='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <div className="text-center pt-1 mb-5 pb-1">
-              <MDBBtn
-                className="mb-4 w-100 gradient-custom-2"
-                onClick={handleRegister}
-              >
-                تسجيل
-              </MDBBtn>
+       
+            <h2 dir="rtl" style={{fontSize:40,fontWeight:'bold',marginLeft:'50px'}} className=" mt-5">الرجاء ادخال المعلومات لإنشاء حساب</h2>
+        
+            <div className="input-container" dir='rtl'>
+    <input
+        className="custom-input mb-2"
+        type="text"
+        placeholder="اسم المستخدم"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+    />
+    <input
+        className="custom-input mb-2"
+        type="email"
+        placeholder="البريد الإلكتروني"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+    />
+    <input
+        className="custom-input mb-2"
+        type="tel"
+        placeholder="رقم الجوال "
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+    />
+    <input
+        className="custom-input mb-2"
+        type="password"
+        placeholder="كلمة المرور"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+    />
+    <div  className="text-center pt-1 mb-5 pb-1">
+            <button
+  className="custom-button mb-4"
+  onClick={handleRegister}
+>
+  تسجيل
+</button>
+
             </div>
-            <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
+    
+</div>
+
+            
+<div style={{marginLeft:'320px'}} className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
               <p className="mb-0">هل لديك حساب؟</p>
               <MDBBtn
                 outline
                 className='mx-2'
                 color='green'
-                onClick={() => navigate('/login')}
+                onClick={() => navigate('/')}
               >
                 تسجيل الدخول
               </MDBBtn>
             </div>
           </div>
         </MDBCol>
-        <MDBCol col='6' className="mb-5">
-          <div
-            style={{ height: '100%' }}
-            className="d-flex justify-content-center gradient-custom-2 h-100 mb-4"
-          >
-            <div className="text-white">
+        <MDBCol md='4' style={{height:'100vh'}}>
+          <div className="d-flex justify-content-center gradient-custom-2 h-100  mb-4 mt-0" >
+            <div className="text-white position-relative">
               <img
-                src={"https://ars.gov.sa/Images/Posts/download-2_1647761677.jpg"}
-                style={{ width: '100%', height: '100%' }}
-                alt="image"
+                src={
+                  "https://ars.gov.sa/Images/Posts/download-2_1647761677.jpg"
+                }
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                alt="Background"
               />
+              <div className="image-overlay">
+              <img
+              src={asier}
+              style={{ width: '20vh', height: '20vh', objectFit: 'cover',top:220,left:190,position:'relative' }}
+              alt="Asier"
+            />
+                <div className="text-center">
+             
+              <h4 
+              style={{ width: '10vh', height: '10vh', objectFit: 'cover',top:240,left:250,position:'relative',fontSize:90 }}
+              className="mt-1 mb-2 pb-1 ">مرحبا </h4>
+                <h4 
+              style={{ width: '10vh', height: '10vh', objectFit: 'cover',top:145,left:150,position:'relative',fontSize:90 }}
+              className="mt-1 mb-2 pb-1 "> بك</h4>
+            </div>
+              </div>
             </div>
           </div>
         </MDBCol>
       </MDBRow>
-    </MDBContainer>
+
+  </div>
   );
 }
 
 export default Register;
+
+   

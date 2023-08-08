@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import Employees from './Employees'; // Update the path
 import {
   MDBBtn,
-  MDBContainer,
   MDBRow,
   MDBCol,
-  MDBInput
 } from 'mdb-react-ui-kit';
-import './Login.css';
+import './Login.css'
+import asier from './iamge/asier.png'
+
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -32,47 +32,50 @@ function Login() {
   };
 
   return (
-    <MDBContainer className="my-5 gradient-form">
-      <MDBRow>
-        <MDBCol col='6' className="mb-5">
-          <div className="d-flex flex-column ms-5">
+  
+    <MDBRow style={{ fontFamily: 'Tajawal, sans-serif' }}>
+      <MDBCol md='8' className="my-5  mb-5 " style={{height:'100%' }}>
+          <div className="d-flex flex-column ms-5 ">
             <div className="text-center">
               <img
                 src={"https://ars.gov.sa/assets/img/newlogo.png"}
-                style={{ width: '490px' }}
+                style={{ width: '490px',opacity:'0.2' }}
                 alt="logo"
               />
-              <h4 className="mt-1 mb-5 pb-1">مرحبا بك في امانه منطقه عسير</h4>
+             <div  className='mt-5 ml-1'>
+            <h4 dir='rtl' style={{fontSize:40,fontWeight:'bold',marginLeft:'800px'}}>تسجيل الدخول</h4>
             </div>
-            <p>الرجاء ادخال المعلومات لتسجيل الدخول</p>
-            <MDBInput
-              wrapperClass='mb-4'
-              label='اسم المستخدم'
-              id='form1'
-              type='email'
+            </div>
+            
+            <div className="input-container" dir='rtl'>
+           
+            <input
+              className="custom-input mb-4 mt-4"
+              type="email"
+              placeholder="اسم المستخدم"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <MDBInput
-              wrapperClass='mb-4'
-              label='كلمه المرور'
-              id='form2'
-              type='password'
+            <input
+              className="custom-input mb-5"
+              type="password"
+              placeholder="كلمه المرور"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="text-center pt-1 mb-5 pb-1">
-              <MDBBtn
-                className="mb-4 w-100 gradient-custom-2"
-                onClick={handleLogin}
-              >
-                تسجبل الدخول
-              </MDBBtn>
-              <a className="text-muted" href="#!">
-                نسيت الباسورد؟
-              </a>
-            </div>
-            <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
+          </div>
+           
+         
+              
+              <button
+               className="custom-button mb-4"
+               onClick={handleLogin}
+               >
+              تسجبل الدخول
+              </button>
+            
+           
+            <div style={{marginLeft:'420px'}} className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
               <p className="mb-0">ما عندك حساب ؟</p>
               <MDBBtn
                 outline
@@ -85,8 +88,8 @@ function Login() {
             </div>
           </div>
         </MDBCol>
-        <MDBCol col='6' className="mb-5">
-          <div className="d-flex justify-content-center gradient-custom-2 h-100 mb-4">
+        <MDBCol md='4' style={{height:'100vh'}}>
+          <div className="d-flex justify-content-center gradient-custom-2 h-100  mb-4 mt-0" >
             <div className="text-white position-relative">
               <img
                 src={
@@ -95,12 +98,27 @@ function Login() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 alt="Background"
               />
-              <div className="image-overlay"></div>
+              <div className="image-overlay">
+              <img
+              src={asier}
+              style={{ width: '30vh', height: '30vh', objectFit: 'cover',top:220,left:150,position:'relative' }}
+              alt="Asier"
+            />
+                <div className="text-center">
+             
+              <h4 
+              style={{ width: '10vh', height: '10vh', objectFit: 'cover',top:240,left:250,position:'relative',fontSize:90 }}
+              className="mt-1 mb-2 pb-1 ">مرحبا </h4>
+                <h4 
+              style={{ width: '10vh', height: '10vh', objectFit: 'cover',top:145,left:150,position:'relative',fontSize:90 }}
+              className="mt-1 mb-2 pb-1 "> بك</h4>
+            </div>
+              </div>
             </div>
           </div>
         </MDBCol>
       </MDBRow>
-    </MDBContainer>
+
   );
 }
 

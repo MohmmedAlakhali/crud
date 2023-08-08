@@ -1,234 +1,268 @@
-// Dashboard.js
-import React, { useState } from 'react';
-import Employees from './Employees';
+import React, { useState } from "react";
+import Employees from "./Employees";
 import {
   MDBContainer,
   MDBTable,
   MDBTableBody,
   MDBTableHead,
   MDBBtn,
-  MDBModal,
-  MDBModalHeader,
-  MDBModalBody,
-  MDBModalFooter,
   MDBInput,
-} from 'mdb-react-ui-kit';
-import './Dashboard.css';
+} from "mdb-react-ui-kit";
+import "./Dashboard.css";
+import newlogo from "./iamge/newlogo.png";
 
 function Dashboard() {
   const [users, setUsers] = useState(Employees);
-  const [editUserId, setEditUserId] = useState(null);
-  const [editUserName, setEditUserName] = useState('');
-  const [editUserPassword, setEditUserPassword] = useState('');
-  const [editUserEmail, setEditUserEmail] = useState('');
-  const [editUserPhone, setEditUserPhone] = useState('');
-  const [newUserName, setNewUserName] = useState('');
-  const [newUserPassword, setNewUserPassword] = useState('');
-  const [newUserEmail, setNewUserEmail] = useState('');
-  const [newUserPhone, setNewUserPhone] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreatingUser, setIsCreatingUser] = useState(false);
+  const [newUser, setNewUser] = useState({
+    user_name: "",
+    password: "",
+    email: "",
+    phone: "",
+  });
 
-  const handleEdit = (id) => {
-    const userToEdit = users.find((user) => user.id === id);
-    setEditUserId(id);
-    setEditUserName(userToEdit.user_name);
-    setEditUserPassword(userToEdit.password);
-    setEditUserEmail(userToEdit.email);
-    setEditUserPhone(userToEdit.phone);
-    setIsModalOpen(true);
+  const handleCreateToggle = () => {
+    setIsCreatingUser(!isCreatingUser);
   };
 
-  const handleUpdate = () => {
-    const updatedUsers = users.map((user) =>
-      user.id === editUserId
-        ? {
-            ...user,
-            user_name: editUserName,
-            password: editUserPassword,
-            email: editUserEmail,
-            phone: editUserPhone,
-          }
-        : user
+  const handleCreateUser = () => {
+    setUsers([...users, newUser]);
+    setNewUser({
+      user_name: "",
+      password: "",
+      email: "",
+      phone: "",
+    });
+    setIsCreatingUser(false);
+  };
+
+  const handleEdit = (id) => {
+    setUsers((prevUsers) =>
+      prevUsers.map((user) =>
+        user.id === id ? { ...user, isEditing: true } : user
+      )
     );
-    setUsers(updatedUsers);
-    setEditUserId(null);
-    setEditUserName('');
-    setEditUserPassword('');
-    setEditUserEmail('');
-    setEditUserPhone('');
-    setIsModalOpen(false);
+  };
+
+  const handleSave = (id) => {
+    setUsers((prevUsers) =>
+      prevUsers.map((user) =>
+        user.id === id ? { ...user, isEditing: false } : user
+      )
+    );
+  };
+
+  const handleInputChange = (id, field, value) => {
+    setUsers((prevUsers) =>
+      prevUsers.map((user) =>
+        user.id === id ? { ...user, [field]: value } : user
+      )
+    );
   };
 
   const handleDelete = (id) => {
-    const updatedUsers = users.filter((user) => user.id !== id);
-    setUsers(updatedUsers);
-  };
-
-  const handleCreate = () => {
-    const newUser = {
-      id: Date.now().toString(),
-      user_name: newUserName,
-      password: newUserPassword,
-      email: newUserEmail,
-      phone: newUserPhone,
-    };
-    setUsers([...users, newUser]);
-    setNewUserName('');
-    setNewUserPassword('');
-    setNewUserEmail('');
-    setNewUserPhone('');
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
   };
 
   return (
-    <MDBContainer className="my-5 gradient-form">
+    <MDBContainer fluid className="my-5 gradient-form">
+<div className="header" style={{ textAlign: 'center' }}>
+  <img
+    style={{
+      width: '400px',
+      height: '110px',
+      display: 'inline-block',
+      verticalAlign: 'middle',
+    }}
+    src={newlogo}
+    alt="Logo"
+    className="logo"
+  />
+</div>
+
       <div className="dashboard-container">
-        <h2>Dashboard</h2>
-        <MDBTable>
+        <h2 dir="rtl" className="dashboard-header">
+          لوحة التحكم
+        </h2>
+        <MDBTable className="user-table">
           <MDBTableHead>
             <tr>
               <th>ID</th>
-              <th>User Name</th>
-              <th>Password</th>
-              <th>Email</th>
-              <th>Phone</th>
+              <th>اسم المستخدم</th>
+              <th>كلمة المرور</th>
+              <th>الايميل</th>
+              <th>رقم الهاتف</th>
               <th>Actions</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.user_name}</td>
-                <td>{user.password}</td>
-                <td>{user.email}</td>
-                <td>{user.phone}</td>
+            {isCreatingUser && (
+              <tr>
+                <td>{/* ID (optional) */}</td>
+                <td>
+                  <MDBInput
+                    type="text"
+                    value={newUser.user_name}
+                    onChange={(e) =>
+                      setNewUser({ ...newUser, user_name: e.target.value })
+                    }
+                  />
+                </td>
+                <td>
+                  <MDBInput
+                    type="password"
+                    value={newUser.password}
+                    onChange={(e) =>
+                      setNewUser({ ...newUser, password: e.target.value })
+                    }
+                  />
+                </td>
+                <td>
+                  <MDBInput
+                    type="email"
+                    value={newUser.email}
+                    onChange={(e) =>
+                      setNewUser({ ...newUser, email: e.target.value })
+                    }
+                  />
+                </td>
+                <td>
+                  <MDBInput
+                    type="text"
+                    value={newUser.phone}
+                    onChange={(e) =>
+                      setNewUser({ ...newUser, phone: e.target.value })
+                    }
+                  />
+                </td>
                 <td>
                   <MDBBtn
-                    className="btn btn-primary me-2"
-                    onClick={() => handleEdit(user.id)}
+                    className="btn btn-success"
+                    onClick={handleCreateUser}
                   >
-                    Edit
+                    حفظ
                   </MDBBtn>
                   <MDBBtn
                     className="btn btn-danger"
-                    onClick={() => handleDelete(user.id)}
+                    onClick={handleCreateToggle}
                   >
-                    Delete
+                    إلغاء
                   </MDBBtn>
                 </td>
               </tr>
-            ))}
+            )}
+            {!isCreatingUser &&
+              users.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>
+                    {user.isEditing ? (
+                      <MDBInput
+                        type="text"
+                        value={user.user_name}
+                        onChange={(e) =>
+                          handleInputChange(
+                            user.id,
+                            "user_name",
+                            e.target.value
+                          )
+                        }
+                      />
+                    ) : (
+                      user.user_name
+                    )}
+                  </td>
+                  <td>
+                    {user.isEditing ? (
+                      <MDBInput
+                        type="password"
+                        value={user.password}
+                        onChange={(e) =>
+                          handleInputChange(user.id, "password", e.target.value)
+                        }
+                      />
+                    ) : (
+                      user.password
+                    )}
+                  </td>
+                  <td>
+                    {user.isEditing ? (
+                      <MDBInput
+                        type="email"
+                        value={user.email}
+                        onChange={(e) =>
+                          handleInputChange(user.id, "email", e.target.value)
+                        }
+                      />
+                    ) : (
+                      user.email
+                    )}
+                  </td>
+                  <td>
+                    {user.isEditing ? (
+                      <MDBInput
+                        type="text"
+                        value={user.phone}
+                        onChange={(e) =>
+                          handleInputChange(user.id, "phone", e.target.value)
+                        }
+                      />
+                    ) : (
+                      user.phone
+                    )}
+                  </td>
+                  <td>
+                    {user.isEditing ? (
+                      <>
+                        <MDBBtn
+                          className="btn btn-success"
+                          onClick={() => handleSave(user.id)}
+                        >
+                          حفظ
+                        </MDBBtn>
+                        <MDBBtn
+                          className="btn btn-danger"
+                          onClick={() =>
+                            setUsers((prevUsers) =>
+                              prevUsers.map((prevUser) =>
+                                prevUser.id === user.id
+                                  ? { ...prevUser, isEditing: false }
+                                  : prevUser
+                              )
+                            )
+                          }
+                        >
+                          إلغاء
+                        </MDBBtn>
+                      </>
+                    ) : (
+                      <>
+                        <MDBBtn
+                          className="btn btn-primary me-2"
+                          onClick={() => handleEdit(user.id)}
+                        >
+                          تعديل
+                        </MDBBtn>
+                        <MDBBtn
+                          className="btn btn-danger"
+                          onClick={() => handleDelete(user.id)}
+                        >
+                          حذف
+                        </MDBBtn>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
           </MDBTableBody>
         </MDBTable>
-
-        <MDBModal isOpen={isModalOpen} toggle={() => setIsModalOpen(false)}>
-          <MDBModalHeader>Edit User</MDBModalHeader>
-          <MDBModalBody>
-            <div className="mb-3">
-              <label htmlFor="editUserName" className="form-label">
-                User Name
-              </label>
-              <MDBInput
-                type="text"
-                id="editUserName"
-                value={editUserName}
-                onChange={(e) => setEditUserName(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="editUserPassword" className="form-label">
-                Password
-              </label>
-              <MDBInput
-                type="password"
-                id="editUserPassword"
-                value={editUserPassword}
-                onChange={(e) => setEditUserPassword(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="editUserEmail" className="form-label">
-                Email
-              </label>
-              <MDBInput
-                type="email"
-                id="editUserEmail"
-                value={editUserEmail}
-                onChange={(e) => setEditUserEmail(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="editUserPhone" className="form-label">
-                Phone
-              </label>
-              <MDBInput
-                type="text"
-                id="editUserPhone"
-                value={editUserPhone}
-                onChange={(e) => setEditUserPhone(e.target.value)}
-              />
-            </div>
-          </MDBModalBody>
-          <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={() => setIsModalOpen(false)}>
-              Cancel
+        {!isCreatingUser && (
+          <div className="text-center">
+            <MDBBtn className="btn btn-primary" onClick={handleCreateToggle}>
+              إنشاء حساب
             </MDBBtn>
-            <MDBBtn color="primary" onClick={handleUpdate}>
-              Save Changes
-            </MDBBtn>
-          </MDBModalFooter>
-        </MDBModal>
-
-        <div className="mb-3">
-          <h4>Create New User</h4>
-          <div className="mb-3">
-            <label htmlFor="newUserName" className="form-label">
-              User Name
-            </label>
-            <MDBInput
-              type="text"
-              id="newUserName"
-              value={newUserName}
-              onChange={(e) => setNewUserName(e.target.value)}
-            />
           </div>
-          <div className="mb-3">
-            <label htmlFor="newUserPassword" className="form-label">
-              Password
-            </label>
-            <MDBInput
-              type="password"
-              id="newUserPassword"
-              value={newUserPassword}
-              onChange={(e) => setNewUserPassword(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="newUserEmail" className="form-label">
-              Email
-            </label>
-            <MDBInput
-              type="email"
-              id="newUserEmail"
-              value={newUserEmail}
-              onChange={(e) => setNewUserEmail(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="newUserPhone" className="form-label">
-              Phone
-            </label>
-            <MDBInput
-              type="text"
-              id="newUserPhone"
-              value={newUserPhone}
-              onChange={(e) => setNewUserPhone(e.target.value)}
-            />
-          </div>
-          <MDBBtn color="primary" onClick={handleCreate}>
-            Create User
-          </MDBBtn>
-        </div>
+        )}
       </div>
     </MDBContainer>
   );
