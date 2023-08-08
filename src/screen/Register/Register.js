@@ -41,15 +41,13 @@ function Register() {
     
   <div style={{height:'100%'}}>
     <MDBRow style={{ fontFamily: 'Tajawal, sans-serif' }}>
-        <MDBCol md='8' className="my-5  mb-5 " style={{height:'100%' }}>
-          <div className="d-flex flex-column ms-5">
-            <div className="text-center">
-              <img
-                src={"https://ars.gov.sa/assets/img/newlogo.png"}
-                style={{ width: '490px',opacity:'0.2' }}
-                alt="logo"
-              />
-       
+      <MDBCol md='8' className='main-left' style={{ fontFamily: 'Tajawal, sans-serif' }}>
+          <div className="d-flex flex-column content-inner">
+          <div className='logo-mobile'>
+            <img
+              src={'https://ars.gov.sa/assets/img/newlogo.png'}
+              alt='logo'
+            />
             </div>
        
             <h2 dir="rtl" style={{fontSize:40,fontWeight:'bold',marginLeft:'50px'}} className=" mt-5">الرجاء ادخال المعلومات لإنشاء حساب</h2>
@@ -86,7 +84,7 @@ function Register() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
     />
-    <div  className="text-center pt-1 mb-5 pb-1">
+    <div  className="text-center pt-1  pb-1">
             <button
   className="custom-button mb-4"
   onClick={handleRegister}
@@ -99,7 +97,7 @@ function Register() {
 </div>
 
             
-<div style={{marginLeft:'320px'}} className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
+<div  className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
               <p className="mb-0">هل لديك حساب؟</p>
               <MDBBtn
                 outline
@@ -112,31 +110,22 @@ function Register() {
             </div>
           </div>
         </MDBCol>
-        <MDBCol md='4' style={{height:'100vh'}}>
-          <div className="d-flex justify-content-center gradient-custom-2 h-100  mb-4 mt-0" >
-            <div className="text-white position-relative">
-              <img
-                src={
-                  "https://ars.gov.sa/Images/Posts/download-2_1647761677.jpg"
-                }
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                alt="Background"
-              />
-              <div className="image-overlay">
-              <img
-              src={asier}
-              style={{ width: '20vh', height: '20vh', objectFit: 'cover',top:220,left:190,position:'relative' }}
-              alt="Asier"
-            />
-                <div className="text-center">
+        <MDBCol md='4' style={{height:'100vh'}} className='main-right'>
+          <div className="d-flex justify-content-center gradient-custom-2   mb-4 mt-0" >
+            <div className="text-white position-relative bg-img">
+            
              
-              <h4 
-              style={{ width: '10vh', height: '10vh', objectFit: 'cover',top:240,left:250,position:'relative',fontSize:90 }}
-              className="mt-1 mb-2 pb-1 ">مرحبا </h4>
-                <h4 
-              style={{ width: '10vh', height: '10vh', objectFit: 'cover',top:145,left:150,position:'relative',fontSize:90 }}
-              className="mt-1 mb-2 pb-1 "> بك</h4>
-            </div>
+                <div className="image-overlay">
+                  <div className="data-right">
+                  <img
+                  src={asier}
+                  style={{ width: '20vh', height: '20vh', objectFit: 'cover' }}
+                  alt="Asier"
+                />
+                  <div className="text-img">
+                    مرحبا بك في أمانة منطقة عسير
+                  </div>
+                 </div>
               </div>
             </div>
           </div>

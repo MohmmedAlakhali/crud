@@ -33,16 +33,17 @@ function Login() {
 
   return (
     <MDBRow style={{ fontFamily: 'Tajawal, sans-serif' }}>
-      <MDBCol md='8' className='my-5  mb-5 ' style={{ height: '100%',fontFamily: 'Tajawal, sans-serif' }}>
-        <div className='d-flex flex-column ms-5 '>
+      <MDBCol md='8' className='main-left' style={{ fontFamily: 'Tajawal, sans-serif' }}>
+        <div className='d-flex flex-column content-inner'>
           <div className='text-center'>
+            <div className='logo-mobile'>
             <img
               src={'https://ars.gov.sa/assets/img/newlogo.png'}
-              style={{ width: '490px', opacity: '0.2' }}
               alt='logo'
             />
+            </div>
             <div className='mt-5 ml-1'>
-              <h4 dir='rtl' style={{ fontSize: 40, fontWeight: 'bold', marginLeft: '800px' }}>
+              <h4 dir='rtl' style={{ fontSize: 40, fontWeight: 'bold', textAlign: 'right' }}>
                 تسجيل الدخول
               </h4>
             </div>
@@ -57,19 +58,21 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
-              className='custom-input mb-5'
+              className='custom-input mb-4'
               type='password'
               placeholder='كلمه المرور'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
 
-          <button className='custom-button mb-4' onClick={handleLogin}>
+           <button className='custom-button mb-4' onClick={handleLogin}>
             تسجيل الدخول
           </button>
+          </div>
 
-          <div  style={{marginLeft:'320px'}}  className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
+    
+
+          <div className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
           <MDBBtn outline className='mx-2' color='green' onClick={() => navigate('/register')}>
               انشاء
             </MDBBtn>
@@ -78,31 +81,22 @@ function Login() {
           </div>
         </div>
       </MDBCol>
-      <MDBCol md='4' style={{height:'100vh'}}>
-          <div className="d-flex justify-content-center gradient-custom-2 h-100  mb-4 mt-0" >
-            <div className="text-white position-relative">
-              <img
-                src={
-                  "https://ars.gov.sa/Images/Posts/download-2_1647761677.jpg"
-                }
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                alt="Background"
-              />
-              <div className="image-overlay">
-              <img
-              src={asier}
-              style={{ width: '20vh', height: '20vh', objectFit: 'cover',top:220,left:190,position:'relative' }}
-              alt="Asier"
-            />
-                <div className="text-center">
+      <MDBCol md='4' style={{height:'100vh'}} className='main-right'>
+          <div className="d-flex justify-content-center gradient-custom-2   mb-4 mt-0" >
+            <div className="text-white position-relative bg-img">
+            
              
-              <h4 
-              style={{ width: '10vh', height: '10vh', objectFit: 'cover',top:240,left:250,position:'relative',fontSize:90 }}
-              className="mt-1 mb-2 pb-1 ">مرحبا </h4>
-                <h4 
-              style={{ width: '10vh', height: '10vh', objectFit: 'cover',top:145,left:150,position:'relative',fontSize:90 }}
-              className="mt-1 mb-2 pb-1 "> بك</h4>
-            </div>
+                <div className="image-overlay">
+                  <div className="data-right">
+                  <img
+                  src={asier}
+                  style={{ width: '20vh', height: '20vh', objectFit: 'cover' }}
+                  alt="Asier"
+                />
+                  <div className="text-img">
+                    مرحبا بك في أمانة منطقة عسير
+                  </div>
+                 </div>
               </div>
             </div>
           </div>
