@@ -8,8 +8,7 @@ import {
   MDBCol,
 } from 'mdb-react-ui-kit';
 import './Login.css'
-import asier from './iamge/asier.png'
-
+import asier from './iamge/asier.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -19,7 +18,8 @@ function Login() {
   const handleLogin = () => {
     // Find the user with matching credentials
     const user = Employees.find(
-      (employee) => employee.user_name === email && employee.password === password
+      (employee) =>
+        employee.user_name === email && employee.password === password
     );
 
     if (user) {
@@ -32,63 +32,52 @@ function Login() {
   };
 
   return (
-  
     <MDBRow style={{ fontFamily: 'Tajawal, sans-serif' }}>
-      <MDBCol md='8' className="my-5  mb-5 " style={{height:'100%' }}>
-          <div className="d-flex flex-column ms-5 ">
-            <div className="text-center">
-              <img
-                src={"https://ars.gov.sa/assets/img/newlogo.png"}
-                style={{ width: '490px',opacity:'0.2' }}
-                alt="logo"
-              />
-             <div  className='mt-5 ml-1'>
-            <h4 dir='rtl' style={{fontSize:40,fontWeight:'bold',marginLeft:'800px'}}>تسجيل الدخول</h4>
+      <MDBCol md='8' className='my-5  mb-5 ' style={{ height: '100%' }}>
+        <div className='d-flex flex-column ms-5 '>
+          <div className='text-center'>
+            <img
+              src={'https://ars.gov.sa/assets/img/newlogo.png'}
+              style={{ width: '490px', opacity: '0.2' }}
+              alt='logo'
+            />
+            <div className='mt-5 ml-1'>
+              <h4 dir='rtl' style={{ fontSize: 40, fontWeight: 'bold', marginLeft: '800px' }}>
+                تسجيل الدخول
+              </h4>
             </div>
-            </div>
-            
-            <div className="input-container" dir='rtl'>
-           
+          </div>
+
+          <div  dir='rtl'>
             <input
-              className="custom-input mb-4 mt-4"
-              type="email"
-              placeholder="اسم المستخدم"
+              className='custom-input mb-4 mt-4'
+              type='email'
+              placeholder='اسم المستخدم'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
-              className="custom-input mb-5"
-              type="password"
-              placeholder="كلمه المرور"
+              className='custom-input mb-5'
+              type='password'
+              placeholder='كلمه المرور'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-           
-         
-              
-              <button
-               className="custom-button mb-4"
-               onClick={handleLogin}
-               >
-              تسجبل الدخول
-              </button>
-            
-           
-            <div style={{marginLeft:'420px'}} className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
-              <p className="mb-0">ما عندك حساب ؟</p>
-              <MDBBtn
-                outline
-                className='mx-2'
-                color='green'
-                onClick={() => navigate('/register')}
-              >
-                انشاء
-              </MDBBtn>
-            </div>
+
+          <button className='custom-button mb-4' onClick={handleLogin}>
+            تسجبل الدخول
+          </button>
+
+          <div  className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
+            <p className='mb-0'>ما عندك حساب ؟</p>
+            <MDBBtn outline className='mx-2' color='green' onClick={() => navigate('/register')}>
+              انشاء
+            </MDBBtn>
           </div>
-        </MDBCol>
-        <MDBCol md='4' style={{height:'100vh'}}>
+        </div>
+      </MDBCol>
+      <MDBCol md='4' style={{height:'100vh'}}>
           <div className="d-flex justify-content-center gradient-custom-2 h-100  mb-4 mt-0" >
             <div className="text-white position-relative">
               <img
@@ -101,7 +90,7 @@ function Login() {
               <div className="image-overlay">
               <img
               src={asier}
-              style={{ width: '30vh', height: '30vh', objectFit: 'cover',top:220,left:150,position:'relative' }}
+              style={{ width: '20vh', height: '20vh', objectFit: 'cover',top:220,left:190,position:'relative' }}
               alt="Asier"
             />
                 <div className="text-center">
@@ -117,8 +106,7 @@ function Login() {
             </div>
           </div>
         </MDBCol>
-      </MDBRow>
-
+    </MDBRow>
   );
 }
 

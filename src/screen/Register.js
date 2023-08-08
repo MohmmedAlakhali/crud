@@ -68,6 +68,7 @@ function Register() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
     />
+   
     <input
         className="custom-input mb-2"
         type="tel"
@@ -75,6 +76,7 @@ function Register() {
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
     />
+
     <input
         className="custom-input mb-2"
         type="password"
